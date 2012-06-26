@@ -1,0 +1,26 @@
+= assets_js
+
+* {Homepage}[https://rubygems.org/gems/assets_js]
+* {Documentation}[http://rubydoc.info/gems/assets_js/frames]
+
+== Description
+
+TODO: Description
+
+== Features
+
+== Examples
+
+  require 'assets_js'
+
+== Requirements
+
+== Install
+
+  $ gem install assets_js
+
+== Copyright
+
+Copyright (c) 2012 jbutler
+
+See LICENSE.txt for details.
