@@ -1,17 +1,43 @@
 = assets_js
 
-* {Homepage}[https://rubygems.org/gems/assets_js]
-* {Documentation}[http://rubydoc.info/gems/assets_js/frames]
+* {Homepage}[https://github.com/johnnypez/assets_js]
+* {Documentation}[https://github.com/johnnypez/assets_js]
 
 == Description
 
-TODO: Description
+Provides some javascript helpers for Rails assets.
 
 == Features
 
 == Examples
 
-  require 'assets_js'
+  Add this to your application.js
+
+  //= require 'assets_js'
+
+  Then somewhere else in your application.js you will be able to reference assets with:
+
+  asset_path('rails.png')
+  => '/assets/rails.png'
+
+  This works if you have digests enabled too:
+
+  asset_path('rails.png');
+  =>  '/assets/rails-dc0842763ddf5d7ea5c32b7e8a4cfa39.png'
+
+  asset_url('rails.png');
+  => 'http://www.example.com/assets/rails-dc0842763ddf5d7ea5c32b7e8a4cfa39.png'
+
+  There are some simple tag helpers too:
+
+  image_tag('rails.png');
+  => <img src="/assets/rails-dc0842763ddf5d7ea5c32b7e8a4cfa39.png" />
+
+  javascript_include_tag('app.js');
+  => <script type="text/javascript" src="/assets/app-dc0842763ddf5d7ea5c32b7e8a4cfa39.js"></script>
+
+  stylesheet_link_tag('style.css');
+  => <link rel="stylesheet" media="screen" href="/assets/style-dc0842763ddf5d7ea5c32b7e8a4cfa39.css" />
 
 == Requirements
 
@@ -21,6 +47,6 @@ TODO: Description
 
 == Copyright
 
-Copyright (c) 2012 jbutler
+Copyright (c) 2012 John Butler
 
 See LICENSE.txt for details.
