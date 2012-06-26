@@ -4,9 +4,9 @@ require File.expand_path('../lib/assets_js/version', __FILE__)
 
 Gem::Specification.new do |gem|
   gem.name          = "assets_js"
-  gem.version       = AssetsJavaScript::VERSION
-  gem.summary       = %q{TODO: Summary}
-  gem.description   = %q{TODO: Description}
+  gem.version       = AssetsJS::VERSION
+  gem.summary       = %q{Provides rails asset helpers to your client side javascript}
+  gem.description   = %q{Provides rails asset helpers to your client side javascript}
   gem.license       = "MIT"
   gem.authors       = ["jbutler"]
   gem.homepage      = "https://rubygems.org/gems/assets_js"

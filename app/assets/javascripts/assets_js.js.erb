@@ -1,0 +1,72 @@
+<%
+  manifest = {}
+  app = Rails.application
+  env = app.assets
+  env.each_logical_path do |logical_path|
+    if File.basename(logical_path)[/[^\.]+/, 0] == 'index'
+      logical_path.sub!(/\/index\./, '.')
+    end
+
+    # grabbed from Sprockets::Environment#find_asset
+    pathname = Pathname.new(logical_path)
+    if pathname.absolute?
+      return unless stat(pathname)
+      logical_path = attributes_for(pathname).logical_path
+    else
+      begin
+        pathname = resolve(logical_path)
+      rescue Sprockets::FileNotFound
+        return nil
+      end
+    end
+
+    asset = Sprockets::Asset.new(env, logical_path, pathname)
+    manifest[logical_path] = app.config.assets.digest ? asset.digest_path : asset.logical_path
+  end
+%>
+
+!function(window, document, undefined){
+  
+  var manifest = <%= ActiveSupport::JSON.encode(manifest) %>;
+  
+  function asset_path(path){
+    if(manifest.hasOwnProperty(path)){
+      return '/assets/' + manifest[path];
+    }
+    else{
+      throw Error('missing asset: ' + path);
+    }
+  };
+
+  function asset_url(path){
+    return window.location.protocol + '//' + window.location.host + asset_path(path);
+  };
+
+  function tag(tag, options){
+    var tag = $(document.createElement(tag));
+    tag.attr(options);
+    return tag[0].outerHTML
+  }
+
+  function image_tag(path, options){
+    var attr = $.extend({}, options, {src: asset_path(path)});
+    return tag('img', attr);
+  }
+
+  function javascript_include_tag(path, options){
+    var attr = $.extend({type: 'text/javascript'}, options, {src: asset_path(path)});
+    return tag('script', attr);
+  }
+
+  function stylesheet_link_tag(path, options){
+    var attr = $.extend({rel: 'stylesheet', media: 'screen'}, options, {href: asset_path(path)});
+    return tag('link', attr);
+  }
+
+  window.asset_path = asset_path;
+  window.asset_url = asset_url;
+  window.image_tag = image_tag;
+  window.javascript_include_tag = javascript_include_tag;
+  window.stylesheet_link_tag = stylesheet_link_tag;
+
+}(window, document);
