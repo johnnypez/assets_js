@@ -8,8 +8,8 @@ Gem::Specification.new do |gem|
   gem.summary       = %q{Provides rails asset helpers to your client side javascript}
   gem.description   = %q{Provides rails asset helpers to your client side javascript}
   gem.license       = "MIT"
-  gem.authors       = ["jbutler"]
-  gem.homepage      = "https://rubygems.org/gems/assets_js"
+  gem.authors       = ["John Butler"]
+  gem.homepage      = "https://github.com/johnnypez/assets_js"
 
   gem.files         = `git ls-files`.split($/)
   gem.executables   = gem.files.grep(%r{^bin/}).map{ |f| File.basename(f) }
