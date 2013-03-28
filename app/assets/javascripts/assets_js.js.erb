@@ -27,6 +27,7 @@
 
 !function(window, document, undefined){
   
+  var asset_host = <%= app.config.action_controller.asset_host.to_json %>
   var manifest = <%= ActiveSupport::JSON.encode(manifest) %>;
   
   function asset_path(path){
@@ -39,7 +40,11 @@
   };
 
   function asset_url(path){
-    return window.location.protocol + '//' + window.location.host + asset_path(path);
+    if (asset_host){
+      return  window.location.protocol + asset_host + asset_path(path)  
+    } else {
+      return window.location.protocol + '//' + window.location.host + asset_path(path);
+    }
   };
 
   function tag(tag, options){
