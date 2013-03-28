@@ -40,10 +40,10 @@
   };
 
   function asset_url(path){
-    if (asset_host == ""){
-      return window.location.protocol + '//' + window.location.host + asset_path(path);
-    } else {
+    if (asset_host){
       return  window.location.protocol + asset_host + asset_path(path)  
+    } else {
+      return window.location.protocol + '//' + window.location.host + asset_path(path);
     }
   };
 
