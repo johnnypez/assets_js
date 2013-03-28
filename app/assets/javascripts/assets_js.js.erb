@@ -27,7 +27,7 @@
 
 !function(window, document, undefined){
   
-  var asset_host = <%= app.config.action_controller.asset_host.to_s %>
+  var asset_host = <%= app.config.action_controller.asset_host.to_json %>
   var manifest = <%= ActiveSupport::JSON.encode(manifest) %>;
   
   function asset_path(path){
