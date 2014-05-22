@@ -32,7 +32,7 @@
   
   function asset_path(path){
     if(manifest.hasOwnProperty(path)){
-      return '/assets/' + manifest[path];
+      return <%= app.config.action_controller.relative_url_root.to_json %> + '/assets/' + manifest[path];
     }
     else{
       throw Error('missing asset: ' + path);
