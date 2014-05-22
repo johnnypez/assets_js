@@ -2,7 +2,6 @@
   manifest = {}
   app = Rails.application
   env = app.assets
-  debugger
   env.each_logical_path do |logical_path|
     if File.basename(logical_path)[/[^\.]+/, 0] == 'index'
       logical_path.sub!(/\/index\./, '.')
