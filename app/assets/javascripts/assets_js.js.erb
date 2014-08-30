@@ -33,7 +33,7 @@
   function asset_path(path){
     if(manifest.hasOwnProperty(path)){
       var relative_root = "<%= app.config.action_controller.relative_url_root %>"
-      return relative_root + '/assets/' + manifest[path];
+      return relative_root + '<%= Rails.application.config.assets.prefix %>' + '/' + manifest[path];
     }
     else{
       throw Error('missing asset: ' + path);
