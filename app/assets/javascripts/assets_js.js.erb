@@ -10,13 +10,13 @@
     # grabbed from Sprockets::Environment#find_asset
     pathname = Pathname.new(logical_path)
     if pathname.absolute?
-      return unless stat(pathname)
+      next unless stat(pathname)
       logical_path = attributes_for(pathname).logical_path
     else
       begin
         pathname = resolve(logical_path)
       rescue Sprockets::FileNotFound
-        return nil
+        next
       end
     end
 
